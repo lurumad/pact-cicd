@@ -80,7 +80,7 @@
                 <artifactId>maven</artifactId>
                 <version>4.1.17</version>
                 <configuration>
-                    <pactBrokerUrl>${env.PACT_BROKER_BASE_URL}}</pactBrokerUrl>
+                    <pactBrokerUrl>${env.PACT_BROKER_BASE_URL}</pactBrokerUrl>
                     <pactBrokerToken>${env.PACT_BROKER_TOKEN}</pactBrokerToken>
                 </configuration>
             </plugin>
