@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  PACT_BROKER_BASE_URL: https://lurumad.pactflow.io
+  PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+  GIT_COMMIT: ${{ github.sha }}
+  GIT_REF: ${{ github.ref }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pact_provider: ['pactflow-example-provider']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build consumer with Maven
+        run: |
+          cd consumer/
+          mvn -B --update-snapshots verify
+      - name: Publish consumer verification results to Pactflow
+        run: |
+          cd consumer/
+          mvn pact:publish
+      - name: Build provider with Maven
+        run: |
+          cd provider/
+          mvn -B --update-snapshots verify
+      - name: Publish provider verification results to Pactflow
+        run: |
+          cd provider/
+          mvn pact:publish
