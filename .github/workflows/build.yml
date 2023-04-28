@@ -44,4 +44,4 @@ jobs:
       - name: Publish provider verification results to Pactflow
         run: |
           cd provider/
-          mvn pact:publish
+          mvn pact:publish -Dpact.verifier.publishResults='true'
