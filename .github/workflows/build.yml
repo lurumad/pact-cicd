@@ -44,4 +44,4 @@ jobs:
       - name: Publish provider verification results to Pactflow
         run: |
           cd provider/
-          mvn pact:publish -Dpact.verifier.publishResults='true' -Dpact.provider.version=$GIT_COMMIT -Dpact.provider.branch=$GIT_REF
+          mvn pact:publish -Dpact.verifier.publishResults='true' -Dpact.branch=$GITHUB_REF -Dpact.provider.version=$GIT_COMMIT
