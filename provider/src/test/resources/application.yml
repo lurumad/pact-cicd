@@ -1,3 +1,8 @@
+pactbroker:
+  host: ${PACT_BROKER_BASE_URL}
+  auth:
+    token: ${PACT_BROKER_TOKEN}
+
 spring:
   jpa:
     defer-datasource-initialization: true
