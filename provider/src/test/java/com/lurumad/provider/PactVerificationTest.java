@@ -26,8 +26,6 @@ import java.util.Map;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Provider("ClassifiedAdService")
-//@PactFolder("pacts")
-//@IgnoreMissingStateChange
 @PactBroker
 public class PactVerificationTest {
     @LocalServerPort

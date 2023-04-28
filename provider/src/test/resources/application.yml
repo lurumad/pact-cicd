@@ -1,5 +1,5 @@
 pactbroker:
-  host: ${PACT_BROKER_BASE_URL}
+  url: ${PACT_BROKER_BASE_URL}
   auth:
     token: ${PACT_BROKER_TOKEN}
 
