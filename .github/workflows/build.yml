@@ -9,6 +9,7 @@ env:
   PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
   GIT_COMMIT: ${{ github.sha }}
   GIT_REF: ${{ github.ref }}
+  BRANCH_NAME: ${{ github.ref }}
 
 jobs:
   build:
@@ -44,4 +45,4 @@ jobs:
       - name: Publish provider verification results to Pactflow
         run: |
           cd provider/
-          mvn pact:publish -Dpact.verifier.publishResults='true' -Dpact.branch=$GITHUB_REF -Dpact.provider.version=$GIT_COMMIT
+          mvn pact:publish -Dpact.verifier.publishResults='true'

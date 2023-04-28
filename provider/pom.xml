@@ -87,6 +87,7 @@
                 <configuration>
                     <pactBrokerUrl>${env.PACT_BROKER_BASE_URL}</pactBrokerUrl>
                     <pactBrokerToken>${env.PACT_BROKER_TOKEN}</pactBrokerToken>
+                    <branchName>${env.BRANCH_NAME}</branchName>
                 </configuration>
             </plugin>
         </plugins>
