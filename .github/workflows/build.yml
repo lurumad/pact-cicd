@@ -38,11 +38,7 @@ jobs:
         run: |
           cd consumer/
           mvn pact:publish
-      - name: Build provider with Maven
+      - name: Build and Publish provider verification results to Pactflow
         run: |
           cd provider/
-          mvn -B --update-snapshots verify
-      - name: Publish provider verification results to Pactflow
-        run: |
-          cd provider/
-          mvn pact:publish -Dpact.verifier.publishResults='true'
+          mvn -B --update-snapshots verify -Dpact.verifier.publishResults='true'
